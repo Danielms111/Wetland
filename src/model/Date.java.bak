@@ -1,0 +1,48 @@
+package model;
+
+/**
+ * @author DanielMontezuma
+ * */
+public class Date{
+  
+  /**
+ * day is an integer type variable that stores the day of the date
+ * */
+  private int day;
+  /**
+ * month is an integer type variable that stores the month of the date
+ * */
+  private int month;
+  /**
+ * year is an integer type variable that stores the year of the date
+ * */
+  private int year;
+  
+  //Set
+  
+  /**
+	* This method set the variables for the date
+	* @param  d, m, y
+	* @param m
+	*/
+  public void setDate(int d, int m, int y){
+	  
+	  day=d;
+	  month=m;
+	  year=y;
+	  
+  }
+  
+  
+  //Get
+  
+  /**
+	* This method get the variables for the date
+	* @return day show the day of the date, month show the month of the date, year show the year of the date
+	*/
+  public String toString (){
+	  
+	  return day + "/n" + month + "/n" + year ;
+  }
+  
+}

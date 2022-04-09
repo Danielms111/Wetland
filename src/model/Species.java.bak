@@ -1,0 +1,48 @@
+package model;
+
+/**
+ * @author DanielMontezuma
+ * */
+public class Species{
+
+  //Attributes
+  
+   /**
+   * name is a String type variable that stores the name of the specie
+   * */
+  private String name;
+   /**
+   * type is a String type variable that stores the type of the specie
+   * */
+  private String type:
+   /**
+   * scientificName is a String type variable that stores scientific Name of the specie
+   * */
+  private String scientificName;
+  
+  
+  //Set
+  
+    /**
+	* This method set the variables for the species
+	* @param String name, String type, String scientificName
+	*/
+  public void setSpecie(String name,String type,String scientificName){
+	 
+	 this.name=name;
+	 this.scientificName=scientificName;
+	 this.type=type;
+	 
+ }
+ 
+ //Get
+ 
+    /**
+	* This method get the variables for the species
+	* @return name show the name of the specie, scientificName show the name of the specie, type show the type of the specie
+	*/
+   public String toString(){
+	  
+	  return name + "\n" + scientificName + "\n" + type;
+  }
+}

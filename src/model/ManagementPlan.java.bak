@@ -1,0 +1,49 @@
+package Model;
+
+/**
+ * @author DanielMontezuma
+ * */
+public class ManagementPlan{
+  
+  
+  //Attributes
+  
+   /**
+   * restorationActivities is a String type variable that stores information of the restoration Activities
+   * */
+  private String restorationActivities;
+   /**
+   * maintenanceActivities is a String type variable that stores information of the maintenance Activities
+   * */
+  private String maintenanceActivities;
+   /**
+   * conservationActivities is a String type variable that stores information of the conservation Activities
+   * */
+  private String conservationActivities;
+  
+  //Set
+  
+    /**
+	* This method set the variables for the Management plan
+	* @param String restorationActivities, String maintenanceActivities, String conservationActivities
+	*/
+  public void setManagementPlan(String restorationActivities,String maintenanceActivities,String conservationActivities){
+	 
+	 this.restorationActivities=restorationActivities;
+	 this.maintenanceActivities=maintenanceActivities;
+	 this.conservationActivities=conservationActivities;
+	 
+ }
+ 
+ //Get
+ 
+    /**
+	* This method get the variables for the Management plan
+	* @return restorationActivities show information of the restoration Activities, maintenanceActivities show information of the maintenance Activities, conservationActivities show a description of the conservation activities
+	*/
+  public String toString(){
+	  
+	  return restorationActivities + "\n" + maintenanceActivities + "\n" + conservationActivities;
+  }
+  
+}

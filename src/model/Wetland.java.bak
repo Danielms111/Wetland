@@ -1,0 +1,64 @@
+package model;
+
+/**
+ * @author DanielMontezuma
+ * */
+public class Wetland{
+ 
+ //Attributes
+ /**
+   * name is a String type variable that stores the name of the wetland
+   * */
+ private String name;
+ /**
+   * locationArea is a String type variable that stores the location of the wetland
+   * */
+ private String locationArea;
+ /**
+   * photoUrl is a String type variable that stores the pohot url of the wetland
+   * */
+ private String photoUrl;
+ /**
+   * compliancePercentageMP is a double type variable that stores the compliance Percentag of the Management Plan
+   * */
+ private double compliancePercentageMP;
+ /**
+   * numberOfKm^2 is a double type variable that stores the number Of Km^2 of the wetland
+   * */
+ private double numberOfKm^2;
+ 
+ //Associations
+ 
+ /**
+ * plan is a variable stored in the ManagementPlan class that gives us the management plan of the wetland
+ * */
+ private ManagementPlan plan;
+ 
+ //Set
+ 
+ /**
+	* This method set the variables for the species
+	* @param name, locationArea, photoUrl, numberOfKm^2, plan, compliancePercentageMP 
+	*/
+ public void setWetland(String name,String locationArea, String photoUrl,double numberOfKm^2,ManagementPlan plan,double compliancePercentageMP){
+	 
+	 this.name=name;
+	 this.locationArea=locationArea;
+	 this.photoUrl=photoUrl;
+	 this.numberOfKm^2=numberOfKm^2;
+	 this.plan=plan;
+	 this.compliancePercentageMP=compliancePercentageMP;
+	 
+ }
+ 
+ //Get
+ 
+ /**
+	* This method get the variables for the wetland
+	* @return name show the name of the wetland, locationArea show the name of the location of thw wetland, plan show the management plan of the wetland, compliancePercentageMP show the compliance percentage of the management plan of the wetland, photourl show a photo url of the wetland
+	*/
+ public String toString(){
+	  
+	  return name + "\n" + locationArea + "\n" + numberOfKm^2 + "\n" + plan + "\n" + compliancePercentageMP + "\n" + photoUrl;
+  }
+}
