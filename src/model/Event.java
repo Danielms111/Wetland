@@ -93,7 +93,7 @@ public class Event{
 	 * an object of the class Rectangle and sets up the info
 	 * */
 	public void addDate(int day, int month, int year) {
-		date = new Date(d, m, y);
+		date = new Date(day, month, year);
 	}
 
     /**

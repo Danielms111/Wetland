@@ -48,6 +48,8 @@ public class Wetland{
    private Event event;
 
    private Species[] species;
+
+   private Species a;
  
 
  
@@ -55,24 +57,26 @@ public class Wetland{
 	* This method set the variables for the species
 	* @param name, locationArea, photoUrl, numberOfKm^2, plan, compliancePercentageMP 
 	*/
-   public Wetland(String name,String locationArea, String photoUrl,double numberOfKm,ManagementPlan plan,double compliancePercentageMP, Event event, Species specie){
+   public Wetland(String name,String locationArea, String photoUrl,double numberOfKm,double compliancePercentageMP, boolean protectedArea2/*, Species a*/){
 	 
 	   this.name=name;
 	   this.locationArea=locationArea;
 	   this.photoUrl=photoUrl;
 	   this.numberOfKm=numberOfKm;
-	   this.plan=plan;
 	   this.compliancePercentageMP=compliancePercentageMP; 
-	   species[0] = specie;
+	  // species[0] = a;
    }
-
+   
+    /**
+	 * This method add a Specie to the wetland
+	 */
    public void addSpecie(String name){
 
 	int contSpecie = 0;
 
 	    if(contSpecie<MAX_SPECIE){
 
-		species[contSpecie] = specie;
+		species[contSpecie] = a;
 		contSpecie++;
 	    }
     }   
@@ -182,7 +186,7 @@ public class Wetland{
 	*/
  public String toString(){
 	  
-	  return name + "\n" + locationArea + "\n" + numberOfKm + "\n" + plan + "\n" + compliancePercentageMP + "\n" + photoUrl + "\n" + event;
+	  return name;
   }
 
 }

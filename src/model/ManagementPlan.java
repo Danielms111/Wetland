@@ -1,6 +1,6 @@
 package model;
 
-public enum ManagmentPlan {
+public enum ManagementPlan {
 
     RESTORATION, MAINTENANCE, CONSERVATION
     

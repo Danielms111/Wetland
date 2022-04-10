@@ -32,7 +32,7 @@ public class Species{
 	* This method set the variables for the species
 	* @param  name, type, scientificName
 	*/
-  public Specie(String name,String type,String scientificName){
+  public Species(String name,String type,String scientificName){
 	 
 	 this.name=name;
 	 this.scientificName=scientificName;
