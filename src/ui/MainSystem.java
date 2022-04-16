@@ -68,21 +68,26 @@ import model.Systemm;
 		case 3: 
         registerEventInWetland();
 			break;
-		case 4: 
+		case 4:
+		createAmbientalPlan();
+		    break;	
+		case 5: 
         amountOfMaintenanceInWetland();
 			break;
-		case 5: 
+		case 6: 
         lessfloraWetland();
             break;
-        case 6: 
+        case 7: 
         searchSpecie();
 			break;
-        case 7: 
+        case 8: 
          infoOfWetland();
 			break;
-        case 8: 
+        case 9: 
          wetlandWithMostAnimals();
             break;
+		default:
+		 System.out.println("Seleccione una opcion valida");
     }
 
 	}
@@ -127,7 +132,7 @@ import model.Systemm;
           aProtected = false;
         }
 		 wetlands.addWetland(wname,wlocation, wurlPhoto, percentage, wkm, aProtected);
-
+		 
 		 System.out.println(wetlands.toString());
 
 	}
@@ -140,6 +145,8 @@ import model.Systemm;
 		String specieScientificName;
 		String specieType;
 		int numSpecie;
+		String migratory;
+		boolean migratoryT = false;
 		String nomWetland = "";
 
 
@@ -157,11 +164,20 @@ import model.Systemm;
 		System.out.println("Write the type of the specie");
 		specieType = sc.nextLine();
 
-		wetlands.addSpecie(specieName, specieScientificName, specieType);
+		System.out.println("Write yes or not if the migratory type");
+		migratory = sc.nextLine();
+
+		if(migratory.equalsIgnoreCase("yes")){
+
+			migratoryT = true;
+		  }if(migratory.equalsIgnoreCase("no")){
+  
+			migratoryT = false;
+		  }
+
+		wetlands.addSpecieToWetland(nomWetland, specieName, specieScientificName, migratoryT, specieType);
 
 		System.out.println("Specie Registraded");
-
-		System.out.println(wetlands.toString());
 
 		}else{
 
@@ -173,15 +189,112 @@ import model.Systemm;
 	*/
   public void registerEventInWetland(){
 
-		System.out.println("wetland CReated");
+	String nomWetland;
+	String nomDirector;
+	double value;
+	String description;
+	int d;
+	int m;
+	int y;
+
+	System.out.println("Digite el nombre del wetland en el que quiere realizar el evento");
+	nomWetland = sc.nextLine();
+
+	if(wetlands.findWetland(nomWetland)){
+
+		System.out.println("Digite el nombre del director del evento");
+		nomDirector = sc.nextLine();
+
+		System.out.println("Digite el valor del vento");
+		value = sc.nextDouble();
+
+		System.out.println("Digite una descripcion del vento");
+		description = sc.nextLine();
+
+		System.out.println("Digite el dia del evento");
+		d = sc.nextInt();
+
+		System.out.println("Digite el mes del evento");
+		m = sc.nextInt();
+
+		System.out.println("Digite el año del evento");
+		y = sc.nextInt();
+
+		wetlands.addEventToWetland(nomWetland, nomDirector, value, description, d, m, y);
+
+		System.out.println("Event Ceeated");
+
+	}else{
+		System.out.println("The wetland digitado does not exist");
 	}
- /**
+  }
+
+  /**
+	* This method show the amount of maintenances activities in a wetland
+	*/
+	public void createAmbientalPlan(){
+
+		String type = "";
+		double percentage;
+		int d;
+		int m;
+		int y;
+		String wName;
+		int nType;
+
+		System.out.println("Digite el nombre del wetland en el que desea registrar el plan de manejo ambiental ");
+		wName = sc.nextLine();
+
+		if(wetlands.findWetland(wName)){
+
+			System.out.println("Choose the type of the Ambiental Management Plan" + "\n" + "(1) Restoration" + "\n" + "(2) Maintenance" + "\n" + "(3) Conservation");
+			nType = sc.nextInt();
+
+			switch(nType){
+				case 1:
+				  type = "Restoration";
+				  break;
+				case 2:
+				  type = "Maintenance";
+				  break;
+				case 3:
+				  type = "Conservation";
+				  break;
+				default:
+				   System.out.println("La opcion digitada no es valida");      
+			}
+
+			System.out.println("Write the percentage compliance of the ambiental plan");
+			percentage = sc.nextInt();
+
+			System.out.println("Digite el dia");
+			d = sc.nextInt();
+
+			System.out.println("Digite el mes");
+			m = sc.nextInt();
+
+			System.out.println("Digite el año");
+			y = sc.nextInt();
+
+			wetlands.addPlanToWetland(wName, type, percentage, d, m, y);
+
+		}else{
+
+			System.out.println("The wetland does not exist");
+
+		}
+
+	}
+
+
+   /**
 	* This method show the amount of maintenances activities in a wetland
 	*/
   public void amountOfMaintenanceInWetland(){
 
 		System.out.println("wetland CReated");
 	}
+
  /**
 	* This method show the wetland with less flora
 	*/
@@ -234,11 +347,12 @@ import model.Systemm;
 		                    "(1) Crear un humedal\n" +
 		                    "(2) Registrar una nueva especie en el humedal\n" +
 		                    "(3) Registrar un evento en el humedal\n"+
-		                    "(4) Informar para cada humedal, la cantidad de mantenimientos en un año dado por el usuario\n"+
-		                    "(5) Desplegar el nombre del humedal con menos especies de flora\n"+
-		                    "(6) Ddao el nombre de una especie, desplegar los humedales donde se encuentre \n"+
-                            "(7) Desplegar la informacion de todos nuestros humedales, incliyendo el total de especies por tipo\n"+
-                            "(8) Desplegar el nombre del humedal con mayor cantidad de animales\n"+
+							"(4) Registrar un plan de manejo ambiental en el humedal\n"+
+		                    "(5) Informar para cada humedal, la cantidad de mantenimientos en un año dado por el usuario\n"+
+		                    "(6) Desplegar el nombre del humedal con menos especies de flora\n"+
+		                    "(7) Dado el nombre de una especie, desplegar los humedales donde se encuentre \n"+
+                            "(8) Desplegar la informacion de todos nuestros humedales, incliyendo el total de especies por tipo\n"+
+                            "(9) Desplegar el nombre del humedal con mayor cantidad de animales\n"+
                             "(0) Para salir"
 		);
 		input = sc.nextInt();

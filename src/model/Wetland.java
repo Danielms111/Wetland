@@ -6,6 +6,10 @@ package model;
 public class Wetland{
 
 	private static final int MAX_SPECIE = 100;
+	private static final int MAX_EVENT = 100;
+	private static final int MAX_PLAN = 100;
+
+
  
  //Attributes
 
@@ -45,11 +49,17 @@ public class Wetland{
  /**
   * plan is a variable stored in the ManagementPlan class that gives us the management plan of the wetland
   **/
-   private Event event;
+   private Event [] event;
 
    private Species[] species;
 
+   private ManagementPlan[] plans;
+
    private Species a;
+
+   private Event b;
+
+   private ManagementPlan p;
  
 
  
@@ -57,29 +67,160 @@ public class Wetland{
 	* This method set the variables for the species
 	* @param name, locationArea, photoUrl, numberOfKm^2, plan, compliancePercentageMP 
 	*/
-   public Wetland(String name,String locationArea, String photoUrl,double numberOfKm,double compliancePercentageMP, boolean protectedArea2/*, Species a*/){
+   public Wetland(String name,String locationArea, String photoUrl,double numberOfKm,double compliancePercentageMP, boolean protectedArea2){
 	 
 	   this.name=name;
 	   this.locationArea=locationArea;
 	   this.photoUrl=photoUrl;
 	   this.numberOfKm=numberOfKm;
 	   this.compliancePercentageMP=compliancePercentageMP; 
-	  // species[0] = a;
+	   species = new Species [MAX_SPECIE];
+       event  = new Event [MAX_EVENT];
+       plans = new ManagementPlan[MAX_PLAN];
+
+       species [0] = a;
+       event [0] = b;
+       plans [0] = p;
+   }
+
+   /*public Wetland(String name,String locationArea, String photoUrl,double numberOfKm,double compliancePercentageMP, boolean protectedArea2, Species a){
+	 
+    this.name=name;
+    this.locationArea=locationArea;
+    this.photoUrl=photoUrl;
+    this.numberOfKm=numberOfKm;
+    this.compliancePercentageMP=compliancePercentageMP; 
+    species = new Species [MAX_SPECIE];  
+    species [0] = a;
+   }
+
+   public Wetland(String name,String locationArea, String photoUrl,double numberOfKm,double compliancePercentageMP, boolean protectedArea2, Event b){
+	 
+    this.name=name;
+    this.locationArea=locationArea;
+    this.photoUrl=photoUrl;
+    this.numberOfKm=numberOfKm;
+    this.compliancePercentageMP=compliancePercentageMP; 
+    event = new Event [MAX_EVENT];
+    
+   }
+
+   public Wetland(String name,String locationArea, String photoUrl,double numberOfKm,double compliancePercentageMP, boolean protectedArea2){
+	 
+    this.name=name;
+    this.locationArea=locationArea;
+    this.photoUrl=photoUrl;
+    this.numberOfKm=numberOfKm;
+    this.compliancePercentageMP=compliancePercentageMP; 
+   }*/
+
+
+
+   public int getEmptyPositionSpe(){
+
+    boolean emptyPosition = false;
+
+    int first =-1;
+
+    for (int i =0;i<MAX_SPECIE && !emptyPosition;i++){
+
+        if(species[i] == null){
+
+            first = i;
+            emptyPosition=true;
+        }
+
+    }
+    return first;
    }
    
     /**
 	 * This method add a Specie to the wetland
 	 */
-   public void addSpecie(String name){
+    public String addSpecie(String name, String scientificName, boolean migratoryType, String type) {
+        String out = "";
+        int emptyPos = getEmptyPositionSpe(); //busco la primera posición vacía
+        // si el arreglo está lleno?
+        out = "Entra al metodo";
+        if(emptyPos == -1){ // está lleno
+        //no se puede agregar
+        out = "El arreglo está lleno";
+        }else{ //Si no está lleno
+        species[emptyPos] = new Species(name, scientificName, migratoryType, type);
+        out = "El registro fue exitoso";
+        }
+        return out;
+        }
 
-	int contSpecie = 0;
+    public int getEmptyPositionEve(){
 
-	    if(contSpecie<MAX_SPECIE){
+            boolean emptyPosition = false;
+        
+            int first =-1;
+        
+            for (int i =0;i<MAX_EVENT && !emptyPosition;i++){
+        
+                if(event[i] == null){
+        
+                    first = i;
+                    emptyPosition=true;
+                }
+        
+            }
+            return first;
+    }
 
-		species[contSpecie] = a;
-		contSpecie++;
-	    }
-    }   
+    public String addEvent(String nameD, double value, String description, Date date){
+
+            String out = "";
+            int emptyPos = getEmptyPositionEve(); //busco la primera posición vacía
+            // si el arreglo está lleno?
+            out = "Entra al metodo";
+            if(emptyPos == -1){ // está lleno
+            //no se puede agregar
+            out = "El arreglo está lleno";
+            }else{ //Si no está lleno
+            event[emptyPos] = new Event(nameD, value, description, date);
+            out = "El registro fue exitoso";
+            }
+            return out;
+    }
+
+    public int getEmptyPositionPlan(){
+
+        boolean emptyPosition = false;
+    
+        int first =-1;
+    
+        for (int i =0;i<MAX_PLAN && !emptyPosition;i++){
+    
+            if(plans[i] == null){
+    
+                first = i;
+                emptyPosition=true;
+            }
+    
+        }
+        return first;
+       }
+
+       public String addPlan(String nameP, double percentage, Date date){
+
+        String out = "";
+        int emptyPos = getEmptyPositionPlan(); //busco la primera posición vacía
+        // si el arreglo está lleno?
+        out = "Entra al metodo";
+        if(emptyPos == -1){ // está lleno
+        //no se puede agregar
+        out = "El arreglo está lleno";
+        }else{ //Si no está lleno
+        plans[emptyPos] = new ManagementPlan(nameP, percentage, date);
+        out = "El registro fue exitoso";
+        }
+        return out;
+}
+        
+        
 
     /**
      * @return String return the name
@@ -172,12 +313,54 @@ public class Wetland{
 		return plan;
 	}
 
-	/**
-     * @param date the date to set
+    /**
+     * @param plan the plan to set
      */
-	public Event getEvent() {
-		return event;
-	}
+    public void setPlan(ManagementPlan plan) {
+        this.plan = plan;
+    }
+
+    /**
+     * @return Event [] return the event
+     */
+    public Event [] getEvent() {
+        return event;
+    }
+
+    /**
+     * @param event the event to set
+     */
+    public void setEvent(Event [] event) {
+        this.event = event;
+    }
+
+    /**
+     * @return Species[] return the species
+     */
+    public Species[] getSpecies() {
+        return species;
+    }
+
+    /**
+     * @param species the species to set
+     */
+    public void setSpecies(Species[] species) {
+        this.species = species;
+    }
+
+    /**
+     * @return Species return the a
+     */
+    public Species getA() {
+        return a;
+    }
+
+    /**
+     * @param a the a to set
+     */
+    public void setA(Species a) {
+        this.a = a;
+    }
 
  
    /**

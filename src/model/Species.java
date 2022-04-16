@@ -32,19 +32,20 @@ public class Species{
 	* This method set the variables for the species
 	* @param  name, type, scientificName
 	*/
-  public Species(String name,String type,String scientificName){
+  public Species(String name, String scientificName, boolean migratorySpecie, String type){
 	 
 	 this.name=name;
 	 this.scientificName=scientificName;
 	 this.type=type;
- }
+   this.migratorySpecie= migratorySpecie;
+  }
 
  /**
      * @return String return the name
      */
     public String getName() {
       return name;
-  }
+    }
 
   /**
    * @param name the name to set

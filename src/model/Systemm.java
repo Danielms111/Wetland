@@ -9,6 +9,8 @@ public class Systemm{
 
     private static final int  MAX_SPECIES = 80;
 
+	private static final int  MAX_EVENT = 80;
+
     /**
      * title is a String type variable that stores the name of the System
      **/
@@ -22,6 +24,9 @@ public class Systemm{
 
     private Species [] aSpecies;
 
+    private Event [] aEvent;
+
+
 	/**
 	 * Constructor
 	 * @param tit is a string with the figures manager title tit!= null, tit!= ""
@@ -31,8 +36,8 @@ public class Systemm{
 		title=tit;
 
 		aWetland = new Wetland[MAX_WETLAND];
-
         aSpecies = new Species[MAX_SPECIES];
+		aEvent = new Event[MAX_EVENT];
 	}
     
 	/**
@@ -115,30 +120,10 @@ public class Systemm{
 		return first;
 	}
 
-    public String addSpecie(String name, String scName, String type){
-
-        String out="";
-	
-		int pos = getEmptyPositionSpe(); //Busco la primera posicion vacia
-
-		if(pos == -1){//Si el arreglo esta lleno
-
-			out="El arreglo esta lleno";
-
-		}else{//Si el arreglo no esta lleno
-
-		    aSpecies[pos] = new Species (name, scName, type);
-			out="The wetland was added";
-
-		}
-
-		return out;
-
-    }
     /**
 	 * Ths method add the Ambiental PlaN to the wetland
 	 */
-	public void addPlanToWetland(String wetlandName, String lA, String urlP, double km, int numPlan){
+	/*public void addPlanToWetland(String wetlandName, String lA, String urlP, double km, int numPlan){
 
 		ManagementPlan plan = null;
 
@@ -158,7 +143,7 @@ public class Systemm{
 
 		}
 
-	}
+	}*/
 
     public boolean findWetland(String wname){
 
@@ -178,6 +163,60 @@ public class Systemm{
 		}
 		return find;
     }
+
+	public String addSpecieToWetland(String wetlandName, String name, String scientificName, boolean migratoryType, String type) {
+		String out = "";
+		boolean control = true;
+		
+		for(int i=0; i < MAX_WETLAND && control == true; i++){
+		if(aWetland[i].getName().equals(wetlandName)){
+		control = false; // Para que no se repita
+		aWetland[i].addSpecie(name, scientificName, migratoryType, type);
+		out = "The specie "+name+" was successfully registered in the wetland "+wetlandName;
+		}else{
+		control = false;
+		out = "The register was not successful because the wetland "+ wetlandName+" doesn't exist";
+		}
+		}
+		return out;
+		}
+
+
+	public String addEventToWetland(String wetlandName, String director, double value, String description, int d, int m, int y) {
+			String out = "";
+			boolean control = true;
+			
+			for(int i=0; i < MAX_WETLAND && control == true; i++){
+			if(aWetland[i].getName().equals(wetlandName)){
+			control = false; // Para que no se repita
+			Date date = new Date (d , m ,y);
+			aWetland[i].addEvent(director, value, description,date);
+			out = "The event was successfully registered in the wetland "+wetlandName;
+			}else{
+			control = false;
+			out = "The register was not successful because the wetland "+ wetlandName+" doesn't exist";
+			}
+			}
+			return out;
+	}
+
+	public String addPlanToWetland(String wetlandName, String nameP, double percentage,int d, int m, int y) {
+		String out = "";
+		boolean control = true;
+		
+		for(int i=0; i < MAX_WETLAND && control == true; i++){
+		if(aWetland[i].getName().equals(wetlandName)){
+		control = false; // Para que no se repita
+		Date date = new Date (d , m ,y);
+		aWetland[i].addPlan(nameP, percentage, date);
+		out = "The event was successfully registered in the wetland "+wetlandName;
+		}else{
+		control = false;
+		out = "The register was not successful because the wetland "+ wetlandName+" doesn't exist";
+		}
+		}
+		return out;
+}
 
 
 
@@ -211,7 +250,7 @@ public class Systemm{
 
     public String toString(){
 
-        return "Datos del wetland" + aWetland[0].toString();
+        return "Datos del wetland" + "\n" + aWetland[0].toString();
     }
 
 }
