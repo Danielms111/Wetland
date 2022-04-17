@@ -133,7 +133,7 @@ import model.Systemm;
         }
 		 wetlands.addWetland(wname,wlocation, wurlPhoto, percentage, wkm, aProtected);
 		 
-		 System.out.println(wetlands.toString());
+		 //System.out.println(wetlands.toString());
 
 	}
  /**
@@ -143,9 +143,9 @@ import model.Systemm;
 
 		String specieName;
 		String specieScientificName;
-		String specieType;
+		String specieType = "";
 		int numSpecie;
-		String migratory;
+		String migratory = "";
 		boolean migratoryT = false;
 		String nomWetland = "";
 
@@ -161,16 +161,40 @@ import model.Systemm;
 		System.out.println("Write the scientific name of the specie");
 		specieScientificName = sc.nextLine();
 
-		System.out.println("Write the type of the specie");
-		specieType = sc.nextLine();
+		System.out.println("Write the type of the specie : " + "\n" + " (1) Flora terrestre" + "\n" + " (2) Flora acuatica" + "\n" + " (3) ave"
+		+ "\n" + " (4) Mamifero" + "\n" + " (5) Acuatico");
+		numSpecie = sc.nextInt();
 
-		System.out.println("Write yes or not if the migratory type");
+		switch(numSpecie){
+			case 1:
+			  specieType = "Flora Terrestre";
+			  break;
+			case 2:
+			  specieType = "Flora acuatica";
+			  break;
+			case 3:
+			  specieType = "Ave";
+			  break;
+			case 4:
+			  specieType = "Mamifero";
+			  break;
+			case 5:
+			  specieType = "Acuatico";
+			  break;   
+			default:
+			   System.out.println("La opcion digitada no es valida");      
+		}
+
+		System.out.println(specieType);
+
+		System.out.println("Write yes or not if the specie is migratory type");
+		sc.nextLine();
 		migratory = sc.nextLine();
 
 		if(migratory.equalsIgnoreCase("yes")){
 
 			migratoryT = true;
-		  }if(migratory.equalsIgnoreCase("no")){
+		}if(migratory.equalsIgnoreCase("no")){
   
 			migratoryT = false;
 		  }
@@ -183,6 +207,9 @@ import model.Systemm;
 
 			System.out.println("El humedal digitado no existe");
 		}
+
+		 //System.out.println(wetlands.toString());
+
 	}
  /**
 	* This method register an event of the wetland
@@ -284,6 +311,9 @@ import model.Systemm;
 
 		}
 
+		 System.out.println(wetlands.toString());
+
+
 	}
 
 
@@ -292,7 +322,21 @@ import model.Systemm;
 	*/
   public void amountOfMaintenanceInWetland(){
 
-		System.out.println("wetland CReated");
+	    String wName;
+
+		System.out.println("Write the name of the wetland");
+		wName = sc.nextLine();
+
+		if(wetlands.findWetland(wName)){
+
+			System.out.println(wetlands.findWetlandPlan(wName));
+
+		}else{
+
+			System.out.println("The wetland does not exist");
+		}
+
+		
 	}
 
  /**
@@ -300,28 +344,33 @@ import model.Systemm;
 	*/
   public void lessfloraWetland(){
 
-		System.out.println("wetland CReated");
+		System.out.println(wetlands.getLessFlora());
 	}	
  /**
 	* This method search a Specie and show all teh wetlands that contains them
 	*/
   public void searchSpecie(){
 
-		System.out.println("wetland CReated");
+	    String nomSpecie;
+		System.out.println("Write the name of the Specie");
+		nomSpecie = sc.nextLine();
+
+		System.out.println(wetlands.getWetlandSpecie(nomSpecie));
 	}
  /**
 	* This method show the info of the wetland
 	*/
   public void infoOfWetland(){
 
-		System.out.println("wetland CReated");
+	   System.out.println("wetland CReated");
+		
 	}
  /**
 	* This method show the wetland with most animals
 	*/
   public void wetlandWithMostAnimals(){
 
-		System.out.println("wetland CReated");
+		System.out.println(wetlands.getMostAnimals());
 	}
 
 

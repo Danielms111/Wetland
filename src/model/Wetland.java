@@ -40,11 +40,6 @@ public class Wetland{
    private boolean protectedArea;
  
  //Associations
- 
- /**
-  * plan is a variable stored in the ManagementPlan class that gives us the management plan of the wetland
-  **/
-   private ManagementPlan plan;
 
  /**
   * plan is a variable stored in the ManagementPlan class that gives us the management plan of the wetland
@@ -218,7 +213,74 @@ public class Wetland{
         out = "El registro fue exitoso";
         }
         return out;
-}
+    } 
+
+    public String showPlans(){
+
+        String out = "";
+
+        for(int j=0;j<MAX_PLAN;j++){
+
+            if(plans[j] != null){
+
+                out += plans[j].toString();
+
+            }
+        }
+
+        return out;
+    }
+
+    public int showLessFlora(){
+        int cont = 80;
+
+        for(int i=0;i<MAX_SPECIE;i++){
+
+            if(species[i] != null){
+
+                if(species[i].showFlora()<cont){
+
+                    cont = species[i].showFlora();
+                }
+            }
+        }
+
+        return cont;
+    }
+
+    public int showMostAnimals(){
+        int cont = 0;
+
+        for(int i=0;i<MAX_SPECIE;i++){
+
+            if(species[i] != null){
+
+                if(species[i].showAnimals()>cont){
+
+                    cont = species[i].showAnimals();
+                }
+            }
+        }
+
+        return cont;
+    }
+
+    public boolean findSpecie(String nomSpecie){
+        boolean out = false;
+
+        for(int i=0;i<MAX_SPECIE;i++){
+
+            if(species[i] != null){
+
+                if(species[i].getWetlandSpecie(nomSpecie)){
+
+                    out = true;
+                }
+            }
+        }
+
+        return out;
+    }
         
         
 
@@ -306,19 +368,6 @@ public class Wetland{
         this.protectedArea = protectedArea;
     }
 
-    /**
-     * @param date the date to set
-     */
-	public ManagementPlan getPlan() {
-		return plan;
-	}
-
-    /**
-     * @param plan the plan to set
-     */
-    public void setPlan(ManagementPlan plan) {
-        this.plan = plan;
-    }
 
     /**
      * @return Event [] return the event
@@ -368,8 +417,58 @@ public class Wetland{
 	* @return name show the name of the wetland, locationArea show the name of the location of thw wetland, plan show the management plan of the wetland, compliancePercentageMP show the compliance percentage of the management plan of the wetland, photourl show a photo url of the wetland
 	*/
  public String toString(){
+
+    String out = "";
 	  
-	  return name;
+    for(int i=0;i<MAX_SPECIE;i++){
+
+       out = name + plans[0].toString();
+
+    }
+    return out;
   }
+
+
+    /**
+     * @return ManagementPlan return the plan
+     */
+    public ManagementPlan getP() {
+        return p;
+    }
+
+    /**
+     * @param plan the plan to set
+     */
+    public void setPlan(ManagementPlan p) {
+        this.p = p;
+    }
+
+    /**
+     * @return ManagementPlan[] return the plans
+     */
+    public ManagementPlan[] getPlans() {
+        return plans;
+    }
+
+    /**
+     * @param plans the plans to set
+     */
+    public void setPlans(ManagementPlan[] plans) {
+        this.plans = plans;
+    }
+
+    /**
+     * @return Event return the b
+     */
+    public Event getB() {
+        return b;
+    }
+
+    /**
+     * @param b the b to set
+     */
+    public void setB(Event b) {
+        this.b = b;
+    }
 
 }

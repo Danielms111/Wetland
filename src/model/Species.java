@@ -40,6 +40,40 @@ public class Species{
    this.migratorySpecie= migratorySpecie;
   }
 
+  public int showFlora(){
+    int out = 0;
+
+    if(getType().equalsIgnoreCase("Flora Terrestre") || getType().equalsIgnoreCase("Flora acuatica")){
+      out++;
+    }else{
+      out = 0;
+    }
+    return out;
+  }
+
+  public int showAnimals(){
+    int out = 0;
+
+    if(getType().equalsIgnoreCase("Mamifero") || getType().equalsIgnoreCase("Ave") || getType().equalsIgnoreCase("Acuatico")){
+      out++;
+    }else{
+      out = 0;
+    }
+    return out;
+  }
+
+  public boolean getWetlandSpecie(String nomSpecie){
+
+    boolean out = false;
+
+    if(getName().equalsIgnoreCase(nomSpecie)){
+
+      out = true;
+    }
+
+    return out;
+  }
+
  /**
      * @return String return the name
      */

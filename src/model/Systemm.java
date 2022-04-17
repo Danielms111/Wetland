@@ -11,6 +11,9 @@ public class Systemm{
 
 	private static final int  MAX_EVENT = 80;
 
+	private static final int  MAX_PLAN = 80;
+
+
     /**
      * title is a String type variable that stores the name of the System
      **/
@@ -26,6 +29,9 @@ public class Systemm{
 
     private Event [] aEvent;
 
+    private ManagementPlan [] aPlan;
+
+
 
 	/**
 	 * Constructor
@@ -38,6 +44,8 @@ public class Systemm{
 		aWetland = new Wetland[MAX_WETLAND];
         aSpecies = new Species[MAX_SPECIES];
 		aEvent = new Event[MAX_EVENT];
+		aPlan = new ManagementPlan[MAX_PLAN];
+
 	}
     
 	/**
@@ -120,30 +128,6 @@ public class Systemm{
 		return first;
 	}
 
-    /**
-	 * Ths method add the Ambiental PlaN to the wetland
-	 */
-	/*public void addPlanToWetland(String wetlandName, String lA, String urlP, double km, int numPlan){
-
-		ManagementPlan plan = null;
-
-		switch(numPlan){
-
-			case 1:
-			       plan = ManagementPlan.RESTORATION;
-				   break;
-		    case 2:
-			       plan = ManagementPlan.MAINTENANCE;
-				   break;
-			case 3:
-			       plan = ManagementPlan.CONSERVATION;
-				   break;
-			default:
-			        System.out.println("Opcion no valida");
-
-		}
-
-	}*/
 
     public boolean findWetland(String wname){
 
@@ -216,9 +200,83 @@ public class Systemm{
 		}
 		}
 		return out;
-}
+    }
 
+   public String findWetlandPlan(String wname){
+	  String out = "";
+	  boolean find = false;
 
+	  for(int i=0; i<MAX_WETLAND && !find; i++){
+		  if(aWetland[i] != null){
+			  if(aWetland[i].getName().equals(wname)){
+			     out += aWetland[i].showPlans();
+			     //find = true;
+			  }
+		   }
+	   }
+	   return out;
+    }
+	
+	public String getLessFlora(){
+
+		String out = "";
+		int cont = 80;
+
+		for(int i=0;i<MAX_WETLAND;i++){
+
+			if(aWetland[i] != null){
+
+				if(aWetland[i].showLessFlora()<cont || aWetland[i].showLessFlora() == 0){
+
+					cont = aWetland[i].showLessFlora();
+					out = aWetland[i].getName();
+
+				}
+			}
+
+		}
+		return  "The wetland with less flora is: " + out + " with " + cont + " Flora";
+	}
+
+	public String getMostAnimals(){
+
+		String out = "";
+		int cont = 0;
+
+		for(int i=0;i<MAX_WETLAND;i++){
+
+			if(aWetland[i] != null){
+
+				if(aWetland[i].showMostAnimals()>cont){
+
+					cont = aWetland[i].showMostAnimals();
+					out = aWetland[i].getName();
+
+				}
+			}
+
+		}
+		return  "The wetland with Most animals is: " + out + " with " + cont + " Animals";
+	}
+
+	public String getWetlandSpecie(String nomSpecie){
+		String out = "";
+
+		for(int i = 0;i<MAX_WETLAND;i++){
+
+			if(aWetland[i] != null){
+
+				if(aWetland[i].findSpecie(nomSpecie)){
+
+					out += aWetland[i].getName() + " ";
+
+				}
+
+			}
+		}
+
+		return "The wetlands that contain this specie are: " + out;
+	}
 
     /**
      * @return String return the title
@@ -248,9 +306,61 @@ public class Systemm{
         this.aWetland = aWetland;
     }
 
+	/**
+     * @return Species [] return the aSpecies
+     */
+    public Species [] getASpecies() {
+        return aSpecies;
+    }
+
+    /**
+     * @param aSpecies the aSpecies to set
+     */
+    public void setASpecies(Species [] aSpecies) {
+        this.aSpecies = aSpecies;
+    }
+
+    /**
+     * @return Event [] return the aEvent
+     */
+    public Event [] getAEvent() {
+        return aEvent;
+    }
+
+    /**
+     * @param aEvent the aEvent to set
+     */
+    public void setAEvent(Event [] aEvent) {
+        this.aEvent = aEvent;
+    }
+
+    /**
+     * @return ManagementPlan [] return the aPlan
+     */
+    public ManagementPlan [] getAPlan() {
+        return aPlan;
+    }
+
+    /**
+     * @param aPlan the aPlan to set
+     */
+    public void setAPlan(ManagementPlan [] aPlan) {
+        this.aPlan = aPlan;
+    }
+
     public String toString(){
 
-        return "Datos del wetland" + "\n" + aWetland[0].toString();
+		String out = "";
+
+		for(int i=0;i<MAX_WETLAND;i++){
+
+			out = "Datos del wetland" + "\n" + aWetland[0].toString();
+	
+		}
+
+		return out;
+
     }
+
 
 }

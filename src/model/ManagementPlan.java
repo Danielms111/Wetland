@@ -12,6 +12,13 @@ public class ManagementPlan {
         this.date = date;
         this.compliancePercentage = compliancePercentage;
     }
+
+    public int getYear(){
+
+        int out = date.getYear();
+
+        return out;
+    }
     
 
     /**
@@ -58,7 +65,8 @@ public class ManagementPlan {
 
     public String toString(){
 	  
-        return name + "\n" + compliancePercentage + "\n" + date;
+        return "The environmental management plan is " + name + " type " + "\n" +  "the complieance percentage is " + compliancePercentage + "%" +
+               "\n" + "and the date is "  + date;
     }
 
 }
