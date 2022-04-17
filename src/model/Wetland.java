@@ -422,8 +422,21 @@ public class Wetland{
 	  
     for(int i=0;i<MAX_SPECIE;i++){
 
-       out = name + plans[0].toString();
+       out = "Name : " + name + "\n" + "Location Area: " + locationArea + "\n" + "photo url: " + photoUrl + "\n" +
+       "Number of km^2" + numberOfKm + "\n";
+       
+       if(species[i] != null){
 
+        out += "Species: " + species[i].toString() + "\n";
+
+       }if(plans[i] != null){
+
+        out += "Ambiental plan:" + plans[i].toString() + "\n";
+
+       }if(event[i] != null){
+
+        out += "Events:" + event[i].toString();
+       }
     }
     return out;
   }

@@ -236,6 +236,7 @@ import model.Systemm;
 		value = sc.nextDouble();
 
 		System.out.println("Digite una descripcion del vento");
+		sc.nextLine();
 		description = sc.nextLine();
 
 		System.out.println("Digite el dia del evento");
@@ -311,9 +312,6 @@ import model.Systemm;
 
 		}
 
-		 System.out.println(wetlands.toString());
-
-
 	}
 
 
@@ -362,7 +360,7 @@ import model.Systemm;
 	*/
   public void infoOfWetland(){
 
-	   System.out.println("wetland CReated");
+	   System.out.println(wetlands.toString());
 		
 	}
  /**

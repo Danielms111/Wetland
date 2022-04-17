@@ -354,8 +354,11 @@ public class Systemm{
 
 		for(int i=0;i<MAX_WETLAND;i++){
 
-			out = "Datos del wetland" + "\n" + aWetland[0].toString();
-	
+			if(aWetland[i] != null){
+
+				out = "Datos del wetland" + "\n" + aWetland[i].toString();
+
+			}
 		}
 
 		return out;
