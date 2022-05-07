@@ -419,25 +419,33 @@ public class Wetland{
  public String toString(){
 
     String out = "";
-	  
+    String out2 = "";
+
+    out += "Name : " + name + "\n" + "Location Area: " + locationArea + "\n" + "photo url: " + photoUrl + "\n" +
+      "Number of km^2" + numberOfKm + "\n";
+
+
     for(int i=0;i<MAX_SPECIE;i++){
 
-       out = "Name : " + name + "\n" + "Location Area: " + locationArea + "\n" + "photo url: " + photoUrl + "\n" +
-       "Number of km^2" + numberOfKm + "\n";
+      /* out += "Name : " + name + "\n" + "Location Area: " + locationArea + "\n" + "photo url: " + photoUrl + "\n" +
+       "Number of km^2" + numberOfKm + "\n";*/
        
        if(species[i] != null){
 
-        out += "Species: " + species[i].toString() + "\n";
+        out2 = "**Se metio**";
+
+        out2 += "Species: " + species[i].toString() + "\n";
 
        }if(plans[i] != null){
 
-        out += "Ambiental plan:" + plans[i].toString() + "\n";
+        out2 += "Ambiental plan:" + plans[i].toString() + "\n";
 
        }if(event[i] != null){
 
-        out += "Events:" + event[i].toString();
+        out2 += "Events:" + event[i].toString();
        }
     }
+    out += out2;
     return out;
   }
 

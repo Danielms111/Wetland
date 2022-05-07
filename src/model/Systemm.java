@@ -153,13 +153,13 @@ public class Systemm{
 		boolean control = true;
 		
 		for(int i=0; i < MAX_WETLAND && control == true; i++){
-		if(aWetland[i].getName().equals(wetlandName)){
-		control = false; // Para que no se repita
-		aWetland[i].addSpecie(name, scientificName, migratoryType, type);
-		out = "The specie "+name+" was successfully registered in the wetland "+wetlandName;
+		if(aWetland[i].getName().equalsIgnoreCase(wetlandName)){
+			control = false; // Para que no se repita
+			aWetland[i].addSpecie(name, scientificName, migratoryType, type);
+			out = "The specie "+name+" was successfully registered in the wetland "+wetlandName;
 		}else{
-		control = false;
-		out = "The register was not successful because the wetland "+ wetlandName+" doesn't exist";
+			out = "The register was not successful because the wetland "+ wetlandName+" doesn't exist";
+
 		}
 		}
 		return out;
@@ -177,7 +177,6 @@ public class Systemm{
 			aWetland[i].addEvent(director, value, description,date);
 			out = "The event was successfully registered in the wetland "+wetlandName;
 			}else{
-			control = false;
 			out = "The register was not successful because the wetland "+ wetlandName+" doesn't exist";
 			}
 			}
@@ -195,7 +194,6 @@ public class Systemm{
 		aWetland[i].addPlan(nameP, percentage, date);
 		out = "The event was successfully registered in the wetland "+wetlandName;
 		}else{
-		control = false;
 		out = "The register was not successful because the wetland "+ wetlandName+" doesn't exist";
 		}
 		}
@@ -352,14 +350,18 @@ public class Systemm{
 
 		String out = "";
 
+		String out2 = "";
+
 		for(int i=0;i<MAX_WETLAND;i++){
 
 			if(aWetland[i] != null){
 
-				out = "Datos del wetland" + "\n" + aWetland[i].toString();
+				out2 += "Datos del wetland" + "\n" + aWetland[i].toString() + "\n";
 
 			}
 		}
+
+		out = out2;
 
 		return out;
 
